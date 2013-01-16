@@ -1,0 +1,44 @@
+1.) Your php.ini file can be found at C:\xampp\php\php.ini
+
+2.) To ensure proper functioning of OpenEMR you must make sure that settings in php.ini file include 
+"short_open_tag = On", "display_errors = Off", 
+"register_globals = Off", "max_execution_time" set to at least 60,
+ "max_input_time" set to at least 90, 
+"post_max_size" set to at least 30M, 
+and "memory_limit" set to at least "128M".
+
+3.) In order to take full advantage of the patient documents capability you must make sure that settings in php.ini file include "file_uploads = On", that "upload_max_filesize" is appropriate for your use and that "upload_tmp_dir" is set to a correct value that will work on your system.
+
+
+Another Set of Instructions:
+
+The "C:\xampp\htdocs\openemr\sites\*\documents", "C:\xampp\htdocs\openemr\sites\*\edi" and "C:\xampp\htdocs\openemr\sites\*\era" directories contain patient information, and it is important to secure these directories. This can be done by placing pertinent .htaccess files in these directories or by pasting the below to end of your apache configuration file:
+  <Directory C:\xampp\htdocs\openemr\sites\*\documents>
+      order deny,allow
+      Deny from all
+  </Directory>
+  <Directory C:\xampp\htdocs\openemr\sites\*\edi>
+      order deny,allow
+      Deny from all
+  </Directory>
+  <Directory C:\xampp\htdocs\openemr\sites\*\era>
+      order deny,allow
+      Deny from all
+  </Directory>
+
+If you are having difficulty finding your apache configuration file, then refer to the 'INSTALL' manual for suggestions.
+
+
+The last Set of Instructions:
+
+1.) Access controls (php-GACL) are installed for fine-grained security, and can be administered in OpenEMR's admin->acl menu.
+
+2.) Reviewing C:\xampp\htdocs\openemr\library\classes/../../sites/default/config.php is a good idea. This file contains some settings that you may want to change.
+
+3.) There's much information and many extra tools bundled within the OpenEMR installation directory. Please refer to openemr/Documentation. Many forms and other useful scripts can be found at openemr/contrib.
+
+4.) To ensure a consistent look and feel through out the application using Firefox is recommended.
+
+5.) The OpenEMR project home page, documentation, and forums can be found at http://www.open-emr.org
+
+6.) We pursue grants to help fund the future development of OpenEMR. To apply for these grants, we need to estimate how many times this program is installed and how many practices are evaluating or using this software. It would be awesome if you would email us at drbowen@openmedsoftware.org if you have installed this software. The more details about your plans with this software, the better, but even just sending us an email stating you just installed it is very helpful.
