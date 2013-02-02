@@ -226,16 +226,7 @@ if ($fres) {
       </select>
      </td>
     </tr>
-	<tr>
-		<td class='bold' nowrap><?php echo htmlspecialchars( xl('Billing Facility'), ENT_NOQUOTES); ?>:</td>
-		<td class='text'>
-			<div id="ajaxdiv">
-			<?php
-			billing_facility('billing_facility',$result['billing_facility']);
-			?>
-			</div>
-		</td>
-     </tr>
+	
     <tr>
 <?php
  $sensitivities = acl_get_sensitivities();

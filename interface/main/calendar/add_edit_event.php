@@ -1127,16 +1127,7 @@ $classpati='';
       </td>
       </select>
     </tr>
-	<tr>
-		<td nowrap>
-		<b><?php echo xlt('Billing Facility'); ?>:</b>
-		</td>
-		<td>
-			<?php
-			billing_facility('billing_facility',$row['pc_billing_location']);
-			?>
-		</td>
-	</tr>
+	
  <?php
  if($_GET['prov']!=true){
  ?>

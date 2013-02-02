@@ -568,63 +568,7 @@ if ($GLOBALS['patient_id_category_name']) {
      <table cellspacing=0 cellpadding=0>
       <tr<?php if ($GLOBALS['athletic_team']) echo " style='display:none;'"; ?>>
        <td>
-<?php
-// Billing expand collapse widget
-$widgetTitle = xl("Billing");
-$widgetLabel = "billing";
-$widgetButtonLabel = xl("Edit");
-$widgetButtonLink = "return newEvt();";
-$widgetButtonClass = "";
-$linkMethod = "javascript";
-$bodyClass = "notab";
-$widgetAuth = false;
-$fixedWidth = true;
-if ($GLOBALS['force_billing_widget_open']) {
-  $forceExpandAlways = true;
-}
-else {
-  $forceExpandAlways = false;
-}
-expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
-  $widgetButtonLink, $widgetButtonClass, $linkMethod, $bodyClass,
-  $widgetAuth, $fixedWidth, $forceExpandAlways);
-?>
-        <br>
-<?php
- if ($GLOBALS['oer_config']['ws_accounting']['enabled']) {
- // Show current balance and billing note, if any.
-  echo "        <div style='margin-left: 10px; margin-right: 10px'>" .
-   "<span class='bold'><font color='#ee6600'>" .
-   htmlspecialchars(xl('Balance Due'),ENT_NOQUOTES) .
-   ": " . htmlspecialchars(oeFormatMoney(get_patient_balance($pid)),ENT_NOQUOTES) .
-   "</font></span><br>";
-  if ($result['genericname2'] == 'Billing') {
-   echo "<span class='bold'><font color='red'>" .
-    htmlspecialchars(xl('Billing Note'),ENT_NOQUOTES) . ":" .
-    htmlspecialchars($result['genericval2'],ENT_NOQUOTES) .
-    "</font></span><br>";
-  } 
-  if ($result3['provider']) {   // Use provider in case there is an ins record w/ unassigned insco
-   echo "<span class='bold'>" .
-    htmlspecialchars(xl('Primary Insurance'),ENT_NOQUOTES) . ': ' . htmlspecialchars($insco_name,ENT_NOQUOTES) .
-    "</span>&nbsp;&nbsp;&nbsp;";
-   if ($result3['copay'] > 0) {
-    echo "<span class='bold'>" .
-     htmlspecialchars(xl('Copay'),ENT_NOQUOTES) . ': ' .  htmlspecialchars($result3['copay'],ENT_NOQUOTES) .
-     "</span>&nbsp;&nbsp;&nbsp;";
-   }
-   echo "<span class='bold'>" .
-    htmlspecialchars(xl('Effective Date'),ENT_NOQUOTES) . ': ' .  htmlspecialchars(oeFormatShortDate($result3['effdate'],ENT_NOQUOTES)) .
-    "</span>";
-  }
-  echo "</div><br>";
- }
-?>
-        </div> <!-- required for expand_collapse_widget -->
-       </td>
-      </tr>
-      <tr>
-       <td>
+
 <?php
 // Demographics expand collapse widget
 $widgetTitle = xl("Demographics");

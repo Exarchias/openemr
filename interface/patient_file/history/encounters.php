@@ -258,8 +258,7 @@ $getStringForPage="&pagesize=".$pagesize."&pagestart=".$pagestart;
 ?>
 <?php if ($billing_view) { ?>
 <a href='encounters.php?billing=0&issue=<?php echo $issue.$getStringForPage; ?>' onclick='top.restoreSession()' style='font-size:8pt'>(<?php echo htmlspecialchars( xl('To Clinical View'), ENT_NOQUOTES); ?>)</a>
-<?php } else { ?>
-<a href='encounters.php?billing=1&issue=<?php echo $issue.$getStringForPage; ?>' onclick='top.restoreSession()' style='font-size:8pt'>(<?php echo htmlspecialchars( xl('To Billing View'), ENT_NOQUOTES); ?>)</a>
+
 <?php } ?>
 
 <span style="float:right">
@@ -299,29 +298,15 @@ $getStringForPage="&pagesize=".$pagesize."&pagestart=".$pagestart;
  <tr class='text'>
   <th><?php echo htmlspecialchars( xl('Date'), ENT_NOQUOTES); ?></th>
 
-<?php if ($billing_view) { ?>
-  <th class='billing_note'><?php echo htmlspecialchars( xl('Billing Note'), ENT_NOQUOTES); ?></th>
-<?php } else { ?>
+
 <?php if (!$issue) { ?>
   <th><?php echo htmlspecialchars( xl('Issue'), ENT_NOQUOTES);       ?></th>
 <?php } ?>
   <th><?php echo htmlspecialchars( xl('Reason/Form'), ENT_NOQUOTES); ?></th>
   <th><?php echo htmlspecialchars( xl('Provider'), ENT_NOQUOTES);    ?></th>
-<?php } ?>
 
-<?php if ($billing_view && $accounting_enabled) { ?>
-  <th><?php echo xl('Code','e'); ?></th>
-  <th class='right'><?php echo htmlspecialchars( xl('Chg'), ENT_NOQUOTES); ?></th>
-  <th class='right'><?php echo htmlspecialchars( xl('Paid'), ENT_NOQUOTES); ?></th>
-  <th class='right'><?php echo htmlspecialchars( xl('Adj'), ENT_NOQUOTES); ?></th>
-  <th class='right'><?php echo htmlspecialchars( xl('Bal'), ENT_NOQUOTES); ?></th>
-<?php } else { ?>
-  <th colspan='5'><?php echo htmlspecialchars( (($GLOBALS['phone_country_code'] == '1') ? xl('Billing') : xl('Coding')), ENT_NOQUOTES); ?></th>
-<?php } ?>
 
-<?php if (!$GLOBALS['athletic_team'] && !$GLOBALS['ippf_specific']) { ?>
-  <th>&nbsp;<?php echo htmlspecialchars( (($GLOBALS['weight_loss_clinic']) ? xl('Payment') : xl('Insurance')), ENT_NOQUOTES); ?></th>
-<?php } ?>
+
 
  </tr>
 

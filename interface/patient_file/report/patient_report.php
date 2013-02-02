@@ -66,7 +66,7 @@ function show_date_fun(){
 <br/>
 <input type='hidden' name='ccrAction'>
 <input type='hidden' name='raw'>
-<input type="checkbox" name="show_date" id="show_date" onchange="show_date_fun();" ><span class='text'><?php xl('Use Date Range','e'); ?>
+<input type="checkbox" name="show_date" id="show_date" onChange="show_date_fun();" ><span class='text'><?php xl('Use Date Range','e'); ?>
 <br>
 <div id="date_div" style="display:none" >
   <br>
@@ -134,9 +134,9 @@ function show_date_fun(){
 <a class="link_submit" href="full_report.php" onclick="top.restoreSession()">
 [<?php xl('View Comprehensive Patient Report','e'); ?>]</a>
 -->
-<a class="link_submit" href="#" onclick="return checkAll(true)"><?php xl('Check All','e'); ?></a>
+<a class="link_submit" href="#" onClick="return checkAll(true)"><?php xl('Check All','e'); ?></a>
 |
-<a class="link_submit" href="#" onclick="return checkAll(false)"><?php xl('Clear All','e'); ?></a>
+<a class="link_submit" href="#" onClick="return checkAll(false)"><?php xl('Clear All','e'); ?></a>
 <p>
 
 <table class="includes">
@@ -149,16 +149,15 @@ function show_date_fun(){
    <!--
    <input type='checkbox' name='include_employer' id='include_employer' value="employer"><?php xl('Employer','e'); ?><br>
    -->
-   <input type='checkbox' name='include_insurance' id='include_insurance' value="insurance"><?php xl('Insurance','e'); ?><br>
-   <input type='checkbox' name='include_billing' id='include_billing' value="billing"
-    <?php if (!$GLOBALS['simplified_demographics']) echo 'checked'; ?>><?php xl('Billing','e'); ?><br>
+  <input type='checkbox' name='include_immunizations' id='include_immunizations' value="immunizations"><?php xl('Immunizations','e'); ?><br>
+  
   </td>
   <td class='text'>
    <!--
    <input type='checkbox' name='include_allergies' id='include_allergies' value="allergies">Allergies<br>
    <input type='checkbox' name='include_medications' id='include_medications' value="medications">Medications<br>
    -->
-   <input type='checkbox' name='include_immunizations' id='include_immunizations' value="immunizations"><?php xl('Immunizations','e'); ?><br>
+  
    <!--
    <input type='checkbox' name='include_medical_problems' id='include_medical_problems' value="medical_problems">Medical Problems<br>
    -->

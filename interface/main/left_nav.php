@@ -1057,14 +1057,7 @@ if ($GLOBALS['athletic_team']) {
     </ul>
   </li>
   <?php // TajEmo Work by CB 2012/06/21 10:41:15 AM hides fees if disabled in globals ?>
-  <?php if(!isset($GLOBALS['enable_fees_in_left_menu']) || $GLOBALS['enable_fees_in_left_menu'] == 1){ ?>
-  <li><a class="collapsed" id="feeimg" ><span><?php xl('Fees','e') ?></span></a>
-    <ul>
-      <?php genMiscLink('RBot','cod','2',xl('Fee Sheet'),'patient_file/encounter/load_form.php?formname=fee_sheet'); ?>
-      <?php genMiscLink('RBot','bil','1',xl('Checkout'),'patient_file/pos_checkout.php?framed=1'); ?>
-    </ul>
-  </li> 
-  <?php } ?>
+  
   <?php if ($GLOBALS['inhouse_pharmacy'] && acl_check('admin', 'drugs')) genMiscLink('RTop','adm','0',xl('Inventory'),'drugs/drug_inventory.php'); ?>
   <li><a class="collapsed" id="admimg" ><span><?php xl('Administration','e') ?></span></a>
     <ul>
@@ -1153,6 +1146,7 @@ if (!empty($reg)) {
     $option_id = $entry['directory'];
 	  $title = trim($entry['nickname']);
     if ($option_id == 'fee_sheet' ) continue;
+	if ($option_id == 'misc_billing_options' ) continue;
     if ($option_id == 'newpatient') continue;
 	  if (empty($title)) $title = $entry['name'];
     genMiscLink('RBot','cod','2',xl_form_title($title),
@@ -1168,18 +1162,7 @@ if (!empty($reg)) {
     </ul>
   </li>
   <?php // TajEmo Work by CB 2012/06/21 10:41:15 AM hides fees if disabled in globals ?>
-  <?php if(!isset($GLOBALS['enable_fees_in_left_menu']) || $GLOBALS['enable_fees_in_left_menu'] == 1){ ?>
-  <li><a class="collapsed" id="feeimg" ><span><?php xl('Fees','e') ?></span></a>
-    <ul>
-      <?php genMiscLink('RBot','cod','2',xl('Fee Sheet'),'patient_file/encounter/load_form.php?formname=fee_sheet'); ?>
-      <?php if ($GLOBALS['use_charges_panel']) genTreeLink('RBot','cod',xl('Charges')); ?>
-      <?php genMiscLink('RBot','pay','1',xl('Payment'),'patient_file/front_payment.php'); ?>
-      <?php genMiscLink('RBot','bil','1',xl('Checkout'),'patient_file/pos_checkout.php?framed=1'); ?> 
-      <?php if (! $GLOBALS['simplified_demographics']) genTreeLink('RTop','bil',xl('Billing')); ?>
-	  <?php genTreeLink('RTop','npa',xl('Batch Payments'),false,2);?>
-    </ul>
-  </li>
-  <?php } ?>
+  
   <?php // if ($GLOBALS['inhouse_pharmacy'] && acl_check('admin', 'drugs')) genMiscLink('RTop','adm','0',xl('Inventory'),'drugs/drug_inventory.php'); ?>
 <?php if ($GLOBALS['inhouse_pharmacy'] && acl_check('admin', 'drugs')) { ?>
   <li><a class="collapsed" id="invimg" ><span><?php xl('Inventory','e') ?></span></a>
@@ -1277,9 +1260,7 @@ if (!empty($reg)) {
           <?php if (!$GLOBALS['disable_calendar']) genMiscLink('RTop','rep','0',xl('Appointments'),'reports/appointments_report.php'); ?>
           <?php  genMiscLink('RTop','rep','0',xl('Encounters'),'reports/encounters_report.php'); ?>
           <?php if (!$GLOBALS['disable_calendar']) genMiscLink('RTop','rep','0',xl('Appt-Enc'),'reports/appt_encounter_report.php'); ?>
-<?php if (empty($GLOBALS['code_types']['IPPF'])) { ?>
-          <?php genMiscLink('RTop','rep','0',xl('Superbill'),'reports/custom_report_range.php'); ?>
-<?php } ?>
+
 	  <?php  genMiscLink('RTop','rep','0',xl('Eligibility'),'reports/edi_270.php'); ?>
 	  <?php  genMiscLink('RTop','rep','0',xl('Eligibility Response'),'reports/edi_271.php'); ?>
 	  
@@ -1290,18 +1271,7 @@ if (!empty($reg)) {
           <?php genMiscLink('RTop','rep','0',xl('Syndromic Surveillance'),'reports/non_reported.php'); ?>
         </ul>
       </li>
-<?php if (acl_check('acct', 'rep_a')) { ?>
-      <li><a class="collapsed_lv2"><span><?php xl('Financial','e') ?></span></a>
-        <ul>
-          <?php genMiscLink('RTop','rep','0',xl('Sales'),'reports/sales_by_item.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Cash Rec'), 'billing/sl_receipts_report.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Front Rec'), 'reports/front_receipts_report.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Pmt Method'), 'reports/receipts_by_method_report.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Collections'), 'reports/collections_report.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Financial Summary by Service Code'),'reports/svc_code_financial_report.php'); ?>
-        </ul>
-      </li>
-<?php } ?>
+
 <?php if ($GLOBALS['inhouse_pharmacy']) { ?>
       <li><a class="collapsed_lv2"><span><?php xl('Inventory','e') ?></span></a>
         <ul>
@@ -1318,15 +1288,7 @@ if (!empty($reg)) {
           <?php genPopLink(xl('Statistics'),'../orders/procedure_stats.php'); ?>
         </ul>
       </li>
-<?php if (! $GLOBALS['simplified_demographics']) { ?>
-      <li><a class="collapsed_lv2"><span><?php xl('Insurance','e') ?></span></a>
-        <ul>
-          <?php genMiscLink('RTop','rep','0',xl('Distribution'),'reports/insurance_allocation_report.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Indigents'),'billing/indigent_patients_report.php'); ?>
-          <?php genMiscLink('RTop','rep','0',xl('Unique SP'),'reports/unique_seen_patients_report.php'); ?>
-        </ul>
-      </li>
-<?php } ?>
+
 <?php if (!empty($GLOBALS['code_types']['IPPF'])) { ?>
       <li><a class="collapsed_lv2"><span><?php xl('Statistics','e') ?></span></a>
         <ul>
@@ -1341,7 +1303,7 @@ if (!empty($reg)) {
       <li><a class="collapsed_lv2"><span><?php xl('Blank Forms','e') ?></span></a>
         <ul>
           <?php genPopLink(xl('Demographics'),'../patient_file/summary/demographics_print.php'); ?>
-          <?php genPopLink(xl('Superbill/Fee Sheet'),'../patient_file/printed_fee_sheet.php'); ?>
+         
           <?php genPopLink(xl('Referral'),'../patient_file/transaction/print_referral.php'); ?>
 <?php
   $lres = sqlStatement("SELECT * FROM list_options " .
