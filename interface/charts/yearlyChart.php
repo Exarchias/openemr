@@ -8,8 +8,6 @@
 				$current = $_GET['year'];
 			}	
 			srand((double)microtime()*1000000);
-			$max = 50;
-			$data = array();
 			$title = array();
 			$begdate = array();
 			$count = 0;
@@ -80,7 +78,7 @@
 			
 			$y = new y_axis();
 			// grid steps:
-			$y->set_range( 0, 30, 5);
+			$y->set_range( 0, 50, 5);
 			$bar = new bar_glass();
 			$bar->set_values($date_counter);
 			$bar->set_colour('#01DF74');
@@ -99,26 +97,12 @@
 		?>
 	<script type="text/javascript" src="../../library/openflashchart/js/swfobject.js"></script>
 	<script type="text/javascript">
-		swfobject.embedSWF("../../library/openflashchart/open-flash-chart.swf", "chart", "980", "400", "9.0.0");
+		swfobject.embedSWF("../../library/openflashchart/open-flash-chart.swf", "chart", "500", "400", "9.0.0","expressInstall.swf",
+				  {"get-data":"get_data_1"});
+		swfobject.embedSWF("../../library/openflashchart/open-flash-chart.swf","chart2", "500", "400", "9.0.0","expressInstall.swf",
+				  {"get-data":"get_data_2"});
 	</script>
-	<script type="text/javascript">
-			
-		function open_flash_chart_data()
-		{
-		    return JSON.stringify(data);
-		}
 		
-		function findSWF(movieName) {
-		  if (navigator.appName.indexOf("Microsoft")!= -1) {
-		    return window[movieName];
-		  } else {
-		    return document[movieName];
-		  }
-		}
-		    
-		var data = <?php echo $chart->toPrettyString(); ?>;
-		
-	</script>		
 	</head>
 	<body>
 		<center>
@@ -131,11 +115,8 @@
 				<a title="<?php echo $previous;?>" href="../charts/yearlyChart.php?year=<?php echo 2+$current;?>">Next Year</a>
 				<?php }?>
 			</div>
-			<div id="chart"></div>
 			<?php 
-			include 'config.php';
-			echo "<br /><br />";
-			
+			include 'config.php';			
 			$month = array();
 			
 			$month[0] = "01";
@@ -183,7 +164,58 @@
 			
 			echo "</td></table>";
 			mysql_close($con);
+			
+			$titled = new title( 'Total Disease'.$_GET['year'] );
+			$xa = new x_axis();
+			$xa->set_labels_from_array($title);
+				
+			$ya = new y_axis();
+			// grid steps:
+			$ya->set_range( 0, 50, 5);
+			$bar2 = new bar_glass();
+			$bar2->set_values($counter);
+			$bar2->set_colour('#01DF74');
+			$ya_legend = new y_legend('Total Number per Disease in year '.$_GET['year']);
+			$ya_legend->set_style( '{font-size: 15px; color: #778877}' );
+				
+				
+			$chart2 = new open_flash_chart();
+			$chart2->set_title( $titled );
+			$chart2->add_element( $bar2 );
+			$chart2->set_x_axis( $xa );
+			$chart2->set_y_axis($ya);
+			$chart2->set_y_legend( $ya_legend );
+			
 			?>
+			<script type="text/javascript">
+			
+				function get_data_1()
+				{
+				    return JSON.stringify(data);
+				}
+		
+		
+				function get_data_2(){
+					return JSON.stringify(data2);
+				}
+		
+				function findSWF(movieName) {
+				  if (navigator.appName.indexOf("Microsoft")!= -1) {
+				    return window[movieName];
+				  } else {
+				    return document[movieName];
+				  }
+				}
+				    
+				var data = <?php echo $chart->toPrettyString(); ?>;
+		
+				var data2 = <?php echo $chart2->toPrettyString();?>;
+				
+			</script>	
+			<div id="chart"></div><div id="chart2"></div>
+			
+			
+			
 		</center>
 		
 	</body>

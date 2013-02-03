@@ -1120,7 +1120,7 @@ if ($GLOBALS['athletic_team']) {
 	  <li class="open"><a class="expanded_lv2"><span><?php xl('Patients Statistic Chart','e')?></span></a>
 	  	<ul>
 	  		<li><a href="../charts/yearlyChart.php?year=<?php echo date('Y');?>" target="RTop">Yearly Statistics</a></li>
-	  		<li><a href="../charts/monthlyChart.php?ofc=mdata.php" target="RBot">Monthly Statistics</a></li>
+	  		<li><a href="../charts/monthlyChart.php?month=01&year=<?php echo date('Y');?>" target="RTop">Monthly Statistics</a></li>
 	  	</ul>
 	  </li>  -------- OUR CODE
       <li><a class="collapsed_lv2"><span><?php xl('Records','e') ?></span></a>
