@@ -891,6 +891,7 @@ $(document).ready(function(){
       $(this).toggleClass("expanded_lv2").toggleClass("collapsed_lv2").parent().find('> ul').slideToggle("medium");
     });
     $("#navigation-slide > li  > a#cal0").prepend('<img src="../../images/calendar.png" class="nav-menu-img" />');
+ //   $("#navigation-slide > li  > a#msg0").prepend('<img src="../../images/calendar.png" class="nav-menu-img" />');
     $("#navigation-slide > li  > a#msg0").prepend('<img src="../../images/messages.png" class="nav-menu-img" />');
     $("#navigation-slide > li  > a#patimg").prepend('<img src="../../images/patient.png" class="nav-menu-img" />');
     $("#navigation-slide > li  > a#app0").prepend('<img src="../../images/patient.png" class="nav-menu-img" />');
@@ -1115,8 +1116,13 @@ if ($GLOBALS['athletic_team']) {
           <?php genTreeLink('RBot','enc',xl('Current')); ?>
           <?php genTreeLink('RBot','ens',xl('Visit History')); ?>
         </ul>
-      </li>
-
+      </li>  
+	  <li class="open"><a class="expanded_lv2"><span><?php xl('Patients Statistic Chart','e')?></span></a>
+	  	<ul>
+	  		<li><a href="../charts/yearlyChart.php?year=<?php echo date('Y');?>" target="RTop">Yearly Statistics</a></li>
+	  		<li><a href="../charts/monthlyChart.php?ofc=mdata.php" target="RBot">Monthly Statistics</a></li>
+	  	</ul>
+	  </li>  -------- OUR CODE
       <li><a class="collapsed_lv2"><span><?php xl('Records','e') ?></span></a>
         <ul>
           <?php genTreeLink('RTop','prq',xl('Patient Record Request')); ?>
